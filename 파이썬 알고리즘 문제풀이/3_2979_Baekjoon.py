@@ -13,19 +13,19 @@ truck_times = [list(map(int, input().split())) for _ in range(3)] # 그 다음 �
 # 2. 시간 리스트 선언 및 초기화 후 시간대별 트럭 수 리스트에 추가
 time_count = [0] * 101 # 시간 범위 1-100
 
-for start, end in truck_times: # [트럭의 도착시간, 떠난시간] 기준 반복문 
-    for x in range(start, end): # [도착시간, 떠난시간] 사이 시간들을 접근하는 반복문
+for start, end in truck_times: # [트럭의 도착시간, 떠난시간] 기준 반복문 - 세번 반복
+    for x in range(start, end): # 도착시간부터 떠난시간까지 반복
         time_count[x] += 1 # 해당 사이 시간들의 count를 올려줌
 
 # 3. 주차 요금 계산
-result_cost = 0
+result_cost = 0 # 주차 요금
 
 for count in time_count:
-    if count == 1: # 트럭 : 1대
+    if count == 1: # 트럭 1대 있던 시간
         result_cost += A
-    elif count == 2: # 트럭 : 2대
+    elif count == 2: # 트럭 2대 있던 시간
         result_cost += B*2 
-    elif count == 3: # 트럭 : 3대
+    elif count == 3: # 트럭 3대 있던 시간
         result_cost += C*3
 
 print(result_cost)
