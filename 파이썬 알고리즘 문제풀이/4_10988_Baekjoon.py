@@ -15,9 +15,14 @@ for i in range (len(word)//2):
 
 print(result)
 
+'''
+# 다른 풀이
+
 word2 = input()
 
 if word == word[::-1]: # 파이썬의 슬라이싱(slicing) 기능을 사용해서 문자열을 뒤집어서 비교. word[::-1] - 전체 문자열을 뒤집는 슬라이싱
     print(1)
 else:
     print(0)
+
+'''
