@@ -3,18 +3,14 @@
 # 출력 : 입력되는 온도의 수열에서 연속적인 K일의 온도의 합이 최대가 되는 값을 출력한다.
 # 구간합
 
-sN, sK = input().split()
-N = int(sN)
-K = int(sK)
-temperature_list = [list(map(int, input().split()) for _ in range(N))]
+N, K = map(int, input().split())
+temperature_list = list(map(int, input().split()))
 
-sum = 0
-max = -99999999999
+current_sum = sum(temperature_list[:K])
+max_sum = current_sum
 
-for j in range((N)-(K)):
-    for i in range(j, (K)):
-        sum += int(temperature_list[i])
-    if max < sum:
-        max = sum
-
-print(max)
+for i in range(K, N): # i = 2,3,4 , K= 2, N = 10 현재값 + 바로 전 인덱스 값 + 바로 후 인덱스 값 temperature_list[]
+    current_sum = current_sum - temperature_list[i-K] + temperature_list[i]
+    if max_sum < current_sum:
+        max_sum = current_sum
+print(max_sum)
