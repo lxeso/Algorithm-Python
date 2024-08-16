@@ -6,7 +6,7 @@
 
 import sys
 input = sys.stdin.read
-sys.setresursionlimit(10**6)
+sys.setrecursionlimit(10**6)
 
 def dfs(x, y):
     # 방문 처리
