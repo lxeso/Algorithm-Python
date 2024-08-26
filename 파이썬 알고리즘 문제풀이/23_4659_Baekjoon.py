@@ -44,13 +44,13 @@ def is_acceptable(password):
 
 def solution():
     while True:
-        password = input().strip()
-        if password == 'end':
+        password = input().strip() #공백제거
+        if password == 'end': # 입력값이 end라면 입력끝
             break
         
-        if is_acceptable(password):
+        if is_acceptable(password): # is_acceptable()함수 실행결과가 true라면 아래 문장 출력
             print(f"<{password}> is acceptable.")
-        else:
+        else: #true가 아니라면 아래 문장 출력
             print(f"<{password}> is not acceptable.")
 
 # 예제 실행
