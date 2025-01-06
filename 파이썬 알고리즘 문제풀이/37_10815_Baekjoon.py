@@ -26,7 +26,6 @@ card_list.sort()
 def binary_search(target_num):
     low = 0
     high = N - 1
-    flag = False
     while low <= high:
         mid = (low + high) // 2
         if card_list[mid] > target_num:
