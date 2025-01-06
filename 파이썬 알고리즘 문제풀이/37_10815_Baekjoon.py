@@ -11,7 +11,8 @@
 3. 목표 카드들의 개수 M을 입력받음 int(input())
 4. 목표 카드들을 리스트로 공백으로 분리시켜서 입력받음 list(map(int, input().split()))
 5. 숫자 카드들을 정렬
-6. 이진 탐색을 시전함. low = 0, high = N - 1 하고, while low <= high 반복문 돌리고 목표카드와 일치하는게 있으면 1을 answer_list에 추가, 없었다면 0을 anwser_list에 추가 후 마지막에 리스트 출력 시킴
+6. 이진 탐색을 시전함. low = 0, high = N - 1 하고, while low <= high 반복문 돌리고 목표카드와 일치하는게 있으면 1을 반환, 일치하는게 없을 시 0을 반환
+7. 반환한 값들을 answer_list에 리스트로 저장 후, 각 요소를 문자열로 변환시킨 다음 공백으로 분리시켜 하나의 문자열로 합친 값을 출력
 
 '''
 
@@ -21,9 +22,6 @@ M = int(input())
 target_list = list(map(int, input().split()))
 
 card_list.sort()
-
-
-
 
 def binary_search(target_num):
     low = 0
