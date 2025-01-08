@@ -9,12 +9,15 @@
 4. M개의 정수를 target_list에 list(map(int, input().split())) 으로 입력받음.
 5. N개의 정수들을 sort() 함수로 정렬 후, 이진 탐색을 시작함
 6. low와 high를 지정하고, 이에 따라 mid를 지정함.
-7. num_list[mid]와 target_list의 target_num 숫자들과 비교함. 
-7-1. num_list[mid]가 target_num보다 크다면 high = mid - 1 로 설정
-7-2. num_list[mid]가 target_num보다 작다면, low = mid + 1 로 설정
-7-3. num_list[mid]가 target_num과 같다면, count + 1 해주고, 계속 반복문 돌림?  num_list[mid] == target_num 일치했을 때 low나 high를 변경 시켜야함. 어떻게? 정렬되어 있으니까.. low를 mid + 1로 설정?
-7-4. 반복문의 조건은 동일해도 됨. 반복문 다 돌고 count를 반환.
-8. 반환받은 count들의 하나의 리스트에 저장시킨 후 print(" ".join(map(str, answer_list))) 로 출력
+7. num_list[mid]와 target_list의 target_num 숫자들과 비교함. 숫자들과 비교하면서, 중복된 숫자들의 '시작인덱스'와 '끝인덱스'를 찾아내야함.
+7-1. 반복문을 총 2개 돌림. 시작인덱스 찾는 반복문, 끝인덱스 찾는 반복문
+7-2. 시작인덱스는 일치하는걸 찾았을때 왼쪽으로 더 이동해서 더 일치하는게 있는지 확인함. 그러므로 high를 mid -1 로 설정하고 start_index를 그때의 mid로 업데이트함.
+7-3. 끝인덱스는 일치하는걸 찾을때 오른쪽으로 더 이동해서 더 일치하는게 있는지 확인함. 그러므로 low를 mid + 1 로 설정하고 end_index를 그때의 mid로 업데이트함.
+8-1. num_list[mid]가 target_num보다 크다면 high = mid - 1 로 설정
+8-2. num_list[mid]가 target_num보다 작다면, low = mid + 1 로 설정
+8-3. num_list[mid]가 target_num과 같다면, 시작인덱스를 찾는 반복문의 경우 high = mid -1 로 설정하고 start_index에 mid 설정. 끝인덱스를 찾는 반복문의 경우 low = mid -1 로 설정하고 end_index에 mid 설정
+8-4. 반복문 다 돌고 ['끝인덱스' - '시작인덱스' + 1] 로 중복된 숫자의 최종 개수를 반환함.
+9. 반환받은 개수들을 하나의 리스트에 저장시킨 후 print(" ".join(map(str, answer_list))) 로 출력
 '''
 
 N = int(input())
