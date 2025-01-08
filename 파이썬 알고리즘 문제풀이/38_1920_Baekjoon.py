@@ -11,7 +11,7 @@
 5-1. 좀 더 자세히.. 말해보자면 high가 low보다 같거나 클 동안 반복문을 진행시키고, 반복문 안에서 target_num 값과 비교해서 만약 찾았으면 return 1 하고, 찾지 못했으면 return 0.
 5-2. 같지 않았다면 크기 비교해서 low나 high를 재조정시킴
 5-3. 주의할점 : mid값은 반복문 안에 적어줘야 한다. low와 high값에 따라 계속 계산되어야하기 때문에. 그리고 출력문 join 쓰는 방법도 주의해서 볼 것.
-6. M개의 줄에 걸쳐 존재하면 1을, 존재하지 않으면 0을 출력시킴 ("/n").join(map(str, answer_list))
+6. M개의 줄에 걸쳐 존재하면 1을, 존재하지 않으면 0을 출력시킴 print("\n".join(map(str, answer_list)))
 '''
 N = int(input())
 num_list = list(map(int, input().split()))
