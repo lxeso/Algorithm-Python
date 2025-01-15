@@ -32,7 +32,6 @@ def backtracking(N, M, visited, path, N_list):
         return
     
     for i, num in enumerate(N_list):
-        
         if i > 0 and N_list[i - 1] == N_list [i] and not visited[i-1]:
             continue
         if not visited[i]:
