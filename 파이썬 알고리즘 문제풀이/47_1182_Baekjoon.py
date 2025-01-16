@@ -12,16 +12,16 @@ N개의 정수로 이루어진 수열에서, 크기가 1이상인 부분수열 �
 
 '''
 알고리즘
-1. N, S를 map(int, input().strip().split()) 입력받기.
-2. N_list를 list(map(int, input().strip().split())) 로 입력받음
-3. N_list를 정렬해야되야 할까요?
-4. backtracking(N, N_list, S, visited, path ) 함수 호출
+1. N과 S를 map(int, input().strip().split())으로 입력받음
+2. N_list를 list(map(int, input().strip().split()))로 입력받음
+3. count 변수를 0으로 초기화
+4. backtracking(index, current_sum) 함수를 작성하고, backtracking(0, 0) 호출
 5. backtracking 함수 작성
-5-1. 종료 조건 sum_of_path(path 리스트안의 모든 요소의 합)이 S가 될 때 count = count + 1하고 return
-? count를 어디서 초기화하지? 인덱스로 보내줘야하나?
-5-2. for 반복문 시작. for i, num in enumerate(N_list):  i는 인덱스, num은 요소
-5-2. 탐색 제한 조건 : sum_of_path > S인 순간 탐색할 필요 없음.
-5-3. backtracking 재귀 호출 전 visited[i]를 True로 설정해주고 재귀 호출한 다음 다시 False로 복귀시켜줌
+5-1. 종료 조건: index가 N과 같아지면 탐색 종료
+5-2. current_sum이 S와 같고, 선택된 원소가 1개 이상일 경우 count += 1
+5-3. 현재 인덱스 숫자를 포함하는 경우: backtracking(index + 1, current_sum + N_list[index]) 호출
+5-4. 현재 인덱스 숫자를 포함하지 않는 경우: backtracking(index + 1, current_sum) 호출
+6. 모든 탐색이 끝난 후 count를 출력
 '''
 
 
