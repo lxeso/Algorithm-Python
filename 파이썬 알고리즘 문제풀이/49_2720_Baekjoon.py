@@ -29,3 +29,19 @@ for _ in range(T):
     C %= 5  # 나머지 계산
     pennies = C  # 남은 값은 페니
     print(quarters, dimes, nickels, pennies)
+
+
+# 다른 풀이
+
+def solution(C):
+    count = [0, 0, 0, 0]
+    coins = [25, 10, 5, 1]
+    for i, coin in enumerate(coins):
+        count[i] += C // coin
+        C = C % coin
+    print(*count)
+
+Testcase = int(input())
+for _ in range(Testcase):
+    C = int(input())
+    solution(C)
