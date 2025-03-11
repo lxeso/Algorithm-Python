@@ -45,3 +45,16 @@ Testcase = int(input())
 for _ in range(Testcase):
     C = int(input())
     solution(C)
+
+# 백준 입출력 문제 10951번
+
+import sys
+input = sys.stdin.readline 
+
+data = sys.stdin.read().strip().splitlines() # 전체 입력
+# data = ['1 1', '2 3', '3 4', '9 8', '5 2'] 문자열을 줄 단위 리스트로 변환.
+for line in data: #  data의 요소를 하나씩 처리
+    if line.strip() == "": # 혹시나 있을 빈 줄은 건너뜀
+        continue
+    a, b = map(int, line.split())
+    print(a + b)
