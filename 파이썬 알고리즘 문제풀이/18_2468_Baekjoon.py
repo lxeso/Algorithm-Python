@@ -15,31 +15,35 @@ def dfs(x, y, rain_height):
         if 0 <= nx < N and 0 <= ny < N and not visited[nx][ny] and graph[nx][ny] > rain_height:
             visited[nx][ny] = True # 방문 표시
             dfs(nx, ny, rain_height)
+
 def solution(rain_height):
-    result_count = 0
-    for i in range(N):
-        for j in range(N):
+    result_count = 0  # 현재 비의 높이에서 안전한 영역 개수
+    for i in range(N): # 모든 행(i) 탐색
+        for j in range(N): # 모든 열(j) 탐색
             # 방문하지 않았으며, 물 높이보다 높은 지점에서 시작
             if not visited[i][j] and graph[i][j] > rain_height:
-                visited[i][j] = True
-                dfs(i, j, rain_height)
-                result_count += 1
-    return result_count
+                visited[i][j] = True # 방문 표시
+                dfs(i, j, rain_height) # DFS 탐색 실행
+                result_count += 1 # 하나의 안전 영역을 찾았으므로 개수 증가
+    return result_count  # 현재 비의 높이에서의 안전 영역 개수 반환
 
 # 입력
-data = input().split() # data = ['5', '6', '8', '2', '6', '2', '3', '2', '3', '4', '6', '6', '7', '3', '3', '2', '7', '2', '5', '3', '6', '8', '9', '5', '2', '7']
-N = int(data[0]) # data[0] = '5'
-graph = [] # 2차원 리스트 저장할 그래프 선언
-index = 1
+data = input().split()  # 여러 줄 입력을 한 번에 받아서 리스트로 저장
+# data = ['5', '6', '8', '2', '6', '2', '3', '2', '3', '4', '6', '6', '7', '3', '3', '2', '7', '2', '5', '3', '6', '8', '9', '5', '2', '7']
+N = int(data[0]) # # 첫 번째 값이 N (지역 크기) data[0] = '5'
+graph = [] # 2차원 리스트 저장할 그래프 생성
+index = 1 # 입력 데이터를 읽어올 위치 설정
 for i in range(N):
-    graph.append(list(map(int, data[index:index+N]))) # 첫번째 반복문 -> data[1:6] = ['6', '8', '2', '6', '2']
-    index += N
+    graph.append(list(map(int, data[index:index+N]))) # N개의 높이를 리스트로 변환, 첫번째 반복문 -> data[1:6] = ['6', '8', '2', '6', '2']
+    index += N  # 다음 줄로 이동
 
+# 최대 안전 영역 개수 저장 변수
 max_safe_areas = 0
 
-#각 물 높이에 대한 안전 영역의 최대 개수 계산
+# 비의 높이를 0부터 최대 높이까지 변화시키며 모든 경우 탐색
 for rain_height in range(max(max(row) for row in graph)+1): # 최대 지역의 높이정보까지 반복
     visited = [[False] * N for _ in range(N)] # 방문 리스트를 모두 False로 초기화하고 시작
     max_safe_areas = max(max_safe_areas, solution(rain_height)) # 최대 안전지역 개수 계속 갱신하며 max_safe_areas에 저장
 
+# 최종 결과 출력
 print(max_safe_areas)
