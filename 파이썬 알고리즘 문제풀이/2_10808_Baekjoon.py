@@ -1,4 +1,4 @@
-# 알파벳 개수
+# 백준 10808번 알파벳 개수
 # 알파벳 소문자로만 이루어진 단어 s에서 각 알파벳이 단어에 몇개가 포함되어 있는지 계산
 # 생각한 로직 : 1. 알파벳 a부터 z까지 담은 리스트 선언 2.결과(개수)를 담을 리스트 선언 3. for문 사용하여 알파벳 리스트와 단어 s의 알파벳이 일치하는게 있다면 결과 리스트에 +1 해주고 반환
 # 사용한 첫번째 로직 : 
@@ -39,3 +39,12 @@ for char in range(ord('a'), ord('z') + 1):
 print(' '.join(result))
 
 '''
+
+s = input()
+alphabet_list = [0] * 26
+
+for char in s:
+    index = ord(char) - ord('a') # 접근할 인덱스 구하기
+    alphabet_list[index] += 1
+
+print(*alphabet_list)
