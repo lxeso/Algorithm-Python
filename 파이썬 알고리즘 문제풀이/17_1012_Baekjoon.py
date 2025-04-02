@@ -48,3 +48,52 @@ def solution():
 
 # 함수 호출
 solution()
+
+
+# 두번째 풀이
+
+import sys
+sys.setrecursionlimit(2500)  # 재귀 한도 설정 (배추 개수가 많을 경우 대비)
+
+# DFS 함수 정의
+def dfs(x, y):
+    # 현재 위치를 방문했으므로 0으로 변경 (방문 처리)
+    farm[y][x] = 0
+
+    # 이동할 방향 (상, 하, 좌, 우)
+    dx = [0, 0, -1, 1]
+    dy = [-1, 1, 0, 0]
+
+    # 네 방향으로 이동하며 탐색
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+
+        # 배추밭 범위 안에 있고, 배추가 있는 경우
+        if 0 <= nx < M and 0 <= ny < N and farm[ny][nx] == 1:
+            dfs(nx, ny)  # 재귀적으로 탐색
+
+# 입력 받기
+T = int(input())  # 테스트 케이스 개수
+for _ in range(T):
+    M, N, K = map(int, input().split())  # 가로(M), 세로(N), 배추 개수(K)
+
+    # 배추밭 초기화 (M x N 크기의 2차원 리스트)
+    farm = [[0] * M for _ in range(N)]
+
+    # 배추 위치 입력 받기
+    for _ in range(K):
+        x, y = map(int, input().split())
+        farm[y][x] = 1  # 배추가 있는 위치를 1로 표시
+
+    worm_count = 0  # 필요한 배추흰지렁이 수 (배추 그룹 개수)
+
+    # 전체 배추밭을 돌면서 DFS 실행
+    for y in range(N):
+        for x in range(M):
+            if farm[y][x] == 1:  # 배추가 있으면
+                dfs(x, y)  # DFS 탐색
+                worm_count += 1  # DFS 탐색이 끝나면 새로운 그룹이므로 카운트 증가
+
+    # 결과 출력
+    print(worm_count)
