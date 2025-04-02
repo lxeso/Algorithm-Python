@@ -40,3 +40,72 @@ def solution():
 
 # 예제 실행
 solution()
+
+
+
+# 방법 2
+import sys
+from collections import deque
+
+input = sys.stdin.read
+data = input().split() # data = ['3', '(())', '()()', '((()))']
+N = int(data[0])
+
+stack = deque()
+for string in data[1:]: # 또는 for string in data[1:N+1]: 
+    stack = deque()
+    is_vps = True # VPS 여부 저장하는 변수
+    for char in string:
+        if char == '(':
+            stack.append('(')
+        elif char == ')':
+            if not stack: #if len(stack) == 0:
+                print("NO")
+                is_vps = False
+                break
+            stack.pop()
+        
+    if is_vps and not stack:
+        print("YES")
+    elif is_vps:
+        print("NO")
+
+
+'''
+모르는 것 
+1. data[0]이 테스트케이스 개수고, data[1~N]까지가 접근해야 할 문자열일때, for문을 어떻게 쓰는가? data[1:N+1]
+2. 오른쪽 괄호가 나와서 스택에서 pop을 하려고 하는데 스택이 이미 비어있다면? vps가 아니므로 'NO'를 출력해야 하는데..? 미리 스택이 비어져있는지 확인 후 pop 시도
+3. 함수가 아닌 상태에서 return을 사용할 수 없으니 출력 부분이 중복되어 일어나는건 어떻게 해결? is_vps = True 변수로 깃발처럼 활용해 해결.. 하지만 최적의 방식은 결국 함수를 따로 만들고 return을 활용하는 방식
+4. data[1:N+1]의 정확한 범위 : 1이상 ~ N+1 미만!! (N+1) 포함 안됨!
+'''
+ 
+# 3번째 풀이 시도
+
+import sys
+from collections import deque
+
+def is_vps_func(ps):
+    stack = deque() # 스택 생성
+    for char in ps:
+        if char == '(':
+            stack.append('(')
+        elif char == ')':
+            if not stack: # 빈리스트 == false 반환. 즉 스택이 비어있다면
+                print('NO')
+                return
+            stack.pop()
+    if not stack:
+        print('YES')
+        return
+    else:
+        print('NO')
+        return
+
+input = sys.stdin.read
+data = input().strip().split()
+ts_num = int(data[0])
+
+for ps in data[1:]:
+    is_vps_func(ps)
+
+
