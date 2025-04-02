@@ -60,3 +60,15 @@ def bfs_2DArray(start_x, start_y, graph): # graph가 2D Array 일 때
                     queue.append((nx, ny))
     return -1
 
+
+# 슬라이딩 윈도우를 활용한 최대 부분합 구하기
+def max_sbarray_sum(nums, k):
+    max_num = float('-inf')
+    current_sum = 0
+
+    for i in range(len(nums)):
+        current_sum += nums[i]
+        if i >= k - 1:
+            max_sum = max(max_sum, current_sum)
+            current_sum =+ nums[i - (k-1)]
+    return max_sum
