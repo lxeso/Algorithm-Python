@@ -37,5 +37,3 @@ def solution_1():
         else:
             count = 0
             print(char, end = "\n")
-def solution_2():
-    for 
