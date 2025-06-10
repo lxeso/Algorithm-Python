@@ -55,4 +55,25 @@ range_val = numbers[-1] - numbers[0]
 print(avg)
 print(mid)
 print(mode)
+
 print(range_val)
+
+def solution():
+    import sys
+    data = sys.stdin.readline
+    try:
+        while True:
+            line = input()
+            count_list = [0, 0, 0, 0] # 소문자, 대문자, 숫자, 공백 개수
+            for char in words:
+                if char.islower(): # 알파벳 소문자면
+                    count_list[0] += 1
+                elif char.isupper(): # 알파벳 대문자면
+                    count_list[1] += 1
+                elif char.isdigit(): # 숫자면
+                    count_list[2] += 1
+                elif char == " ": # 공백이면
+                    count_list[3] += 1    
+            print(' '.join(map(str, count_list)))# join() 함수는 문자열만 다룰 수 있음
+    except EOFError:
+        pass
